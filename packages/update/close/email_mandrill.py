@@ -2,15 +2,19 @@ from setup import *
 
 from base64 import b64encode
 
-import mailchimp_transactional as MailchimpTransactional
-from mailchimp_transactional.api_client import ApiClientError
-
 logger = logging.getLogger(__name__)
 
+if (MANDRILL_API_KEY is not None) and (EMAIL_RECIPIENTS is not None):
+      import mailchimp_transactional as MailchimpTransactional
+      from mailchimp_transactional.api_client import ApiClientError
+
 def email_update(html, camps_to_close_table, camps_closed_table, camps_not_closed_table):
-      logger.info("Emailing updates...")
-      send_email_mandrill(html, camps_to_close_table, camps_closed_table, camps_not_closed_table)
-      logger.info("Done")
+      if (MANDRILL_API_KEY is not None) and (EMAIL_RECIPIENTS is not None):
+            logger.info("Emailing updates...")
+            send_email_mandrill(html, camps_to_close_table, camps_closed_table, camps_not_closed_table)
+            logger.info("Done")
+      else:
+            logger.info("Skipping email...")
 
 
 def send_email_mandrill(html, camps_to_close_table, camps_closed_table, camps_not_closed_table):

@@ -2,8 +2,7 @@ from setup import *
 
 from camperoni_auth import *
 
-if (MANDRILL_API_KEY is not None) and (EMAIL_RECIPIENTS is not None):
-      from email_mandrill import *
+from email_mandrill import *
 
 logger = logging.getLogger(__name__)
 
@@ -184,8 +183,7 @@ def main():
 
       email_html = calculate_html(camps_to_close, camps_closed, camps_not_closed, camps_closed_table)
 
-      if (MANDRILL_API_KEY is not None) and (EMAIL_RECIPIENTS is not None):
-            email_update(email_html, camps_to_close_table, camps_closed_table, camps_not_closed_table)
+      email_update(email_html, camps_to_close_table, camps_closed_table, camps_not_closed_table)
 
       # logger.info("Uploading to Google Drive...")
       # gdrive_upload(camps_to_close_table, camps_closed_table, camps_not_closed_table)
