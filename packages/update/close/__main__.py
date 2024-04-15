@@ -107,6 +107,7 @@ def close_camps(auth_key, camps_to_close):
             if EXECUTE_SAMPLE_ONLY and (random.random() < 0.3):
                   # Do something with 30% chance
                   # Add your code here
+                  logger.info("Sample only mode. Exiting after closing a few camps.")
                   break
 
       return (camps_closed, camps_not_closed)
