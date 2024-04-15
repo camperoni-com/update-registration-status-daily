@@ -64,7 +64,9 @@ else:
 # logger = logging.getLogger(__name__)
 
 GDRIVE_PARENT_FOLDER = os.getenv("GDRIVE_PARENT_FOLDER")
-GDRIVE_CREDENTIALS = os.environ.get("GDRIVE_CREDENTIALS").replace("___NEWLINE___", '\\n')
+GDRIVE_CREDENTIALS = os.environ.get("GDRIVE_CREDENTIALS")
+if GDRIVE_CREDENTIALS is not None:
+    GDRIVE_CREDENTIALS = GDRIVE_CREDENTIALS.replace("___NEWLINE___", '\\n')
 
 # HTTP Related Code
 base_url = HOST_URL
