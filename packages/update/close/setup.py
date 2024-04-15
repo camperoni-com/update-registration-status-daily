@@ -16,21 +16,26 @@ from tabulate import tabulate
 
 load_dotenv()
 
-SENTRY_DSN=os.environ["SENTRY_DSN"]
-SENTRY_ENV=os.environ["SENTRY_ENV"]
+# Read sentry DSN and environment name from environment. 
+# Default env name to unknown if not found
+SENTRY_DSN=os.getenv("SENTRY_DSN")
+SENTRY_ENV=os.getenv("SENTRY_ENV", "unknown")
 
-sentry_sdk.init(
-    dsn=SENTRY_DSN,
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    traces_sample_rate=1.0,
-    # Set profiles_sample_rate to 1.0 to profile 100%
-    # of sampled transactions.
-    # We recommend adjusting this value in production.
-    profiles_sample_rate=1.0,
-    environment=SENTRY_ENV
-)
+# Only set up sentry if a DSN is provided. We can work without it as well
+if SENTRY_DSN is not None:
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        traces_sample_rate=1.0,
+        # Set profiles_sample_rate to 1.0 to profile 100%
+        # of sampled transactions.
+        # We recommend adjusting this value in production.
+        profiles_sample_rate=1.0,
+        environment=SENTRY_ENV
+    )
 
+# Read host URL, admin username and password from environment. Fail if not found
 HOST_URL=os.environ["HOST_URL"]
 ADMIN_USERNAME=os.environ["ADMIN_USERNAME"]
 ADMIN_PASSWORD=os.environ["ADMIN_PASSWORD"]
