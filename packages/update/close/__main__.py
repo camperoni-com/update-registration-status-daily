@@ -4,6 +4,8 @@ from camperoni_auth import *
 
 from email_mandrill import *
 
+from gdrive import *
+
 logger = logging.getLogger(__name__)
 
 def fetch_camps():
@@ -112,16 +114,6 @@ def close_camps(auth_key, camps_to_close):
 
       return (camps_closed, camps_not_closed)
 
-def gdrive_upload(camps_to_close_table, camps_closed_table, camps_not_closed_table):
-      # Update the google drive and upload the list of camps that were closed
-      try:
-            pass
-      except:
-            logger.error("Google Drive upload failed.")
-            raise Exception("Google Drive upload failed.")
-      
-      return
-
 def calculate_camps_table(camps):
 
       if(len(camps) == 0):
@@ -186,9 +178,7 @@ def main():
 
       email_update(email_html, camps_to_close_table, camps_closed_table, camps_not_closed_table)
 
-      # logger.info("Uploading to Google Drive...")
-      # gdrive_upload(camps_to_close_table, camps_closed_table, camps_not_closed_table)
-      # logger.info("Done")
+      gdrive_upload(camps_to_close_table, camps_closed_table, camps_not_closed_table)
 
       logout(auth_key)
       return
