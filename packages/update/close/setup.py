@@ -63,6 +63,9 @@ else:
     # logging.basicConfig(level=LOGLEVEL)
 # logger = logging.getLogger(__name__)
 
+GDRIVE_PARENT_FOLDER = os.getenv("GDRIVE_PARENT_FOLDER")
+GDRIVE_CREDENTIALS = os.environ.get("GDRIVE_CREDENTIALS").replace("___NEWLINE___", '\\n')
+
 # HTTP Related Code
 base_url = HOST_URL
 
