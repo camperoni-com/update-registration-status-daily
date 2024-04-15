@@ -1,5 +1,9 @@
 packages:
-  - name: sample
+  - name: update
     actions:
-      - name: hello
-        runtime: 'python:default'
+      - name: open
+        runtime: 'python:3.11'
+        web: false
+      - name: close
+        runtime: 'python:3.11'
+        web: false
