@@ -75,7 +75,7 @@ def upload_file_to_drive(drive_service, data, file_prefix, folder_id):
     return response
 
 
-def gdrive_upload(camps_to_close_table, camps_closed_table, camps_not_closed_table):
+def gdrive_upload(email_html, camps_to_close_table, camps_closed_table, camps_not_closed_table):
     if (GDRIVE_PARENT_FOLDER is not None) and (GDRIVE_CREDENTIALS is not None):
         logger.info("Uploading to Google Drive...")
 
@@ -85,6 +85,9 @@ def gdrive_upload(camps_to_close_table, camps_closed_table, camps_not_closed_tab
 
             folder_id = get_or_create_folder(GDRIVE_PARENT_FOLDER, drive_service)
             logger.debug(f"Folder ID: {folder_id}")
+
+            response = upload_file_to_drive(drive_service, email_html, 'results_summary', folder_id)
+            logger.debug(f"File results_summary response: {response}")
 
             response = upload_file_to_drive(drive_service, camps_to_close_table, 'camps_to_close', folder_id)
             logger.debug(f"File camps_to_close response: {response}")

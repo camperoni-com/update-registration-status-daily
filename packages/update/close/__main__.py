@@ -178,7 +178,7 @@ def main():
 
       email_update(email_html, camps_to_close_table, camps_closed_table, camps_not_closed_table)
 
-      gdrive_upload(camps_to_close_table, camps_closed_table, camps_not_closed_table)
+      gdrive_upload(email_html, camps_to_close_table, camps_closed_table, camps_not_closed_table)
 
       logout(auth_key)
       return
