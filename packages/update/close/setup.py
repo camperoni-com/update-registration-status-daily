@@ -8,17 +8,11 @@ from dotenv import load_dotenv
 
 import datetime
 
-from base64 import b64encode
-
 import logging
 
 import sentry_sdk
 
 from tabulate import tabulate
-
-import mailchimp_transactional as MailchimpTransactional
-from mailchimp_transactional.api_client import ApiClientError
-
 
 load_dotenv()
 
