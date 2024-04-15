@@ -14,6 +14,8 @@ import sentry_sdk
 
 from tabulate import tabulate
 
+from datadog_custom_logger import DatadogCustomLogHandler
+
 load_dotenv()
 
 # Read sentry DSN and environment name from environment. 
@@ -48,7 +50,17 @@ EMAIL_RECIPIENTS=os.getenv("EMAIL_RECIPIENTS")
 EXECUTE_SAMPLE_ONLY=os.getenv("EXECUTE_SAMPLE_ONLY", True)
 
 LOGLEVEL = os.environ.get('LOGLEVEL', 'WARNING').upper()
-logging.basicConfig(level=LOGLEVEL)
+
+
+DD_API_KEY = os.getenv("DD_API_KEY")
+DD_SITE = os.getenv("DD_SITE")
+
+if (DD_API_KEY is not None) and (DD_SITE is not None):
+    datadog_custom_handler = DatadogCustomLogHandler(level=LOGLEVEL, service="update-registration-status-daily--close") # Set the datadog log level to INFO
+    logging.basicConfig(level=LOGLEVEL, handlers=[logging.StreamHandler(), datadog_custom_handler])
+else:
+    logging.basicConfig(level=LOGLEVEL, handlers=[logging.StreamHandler()])
+    # logging.basicConfig(level=LOGLEVEL)
 # logger = logging.getLogger(__name__)
 
 # HTTP Related Code
