@@ -1,5 +1,30 @@
 packages:
   - name: update
+    environment:
+      # HOST_URL will be substituted to the HOST_URL value
+      # defined in App Platform's environment variable configuration.
+      # NOTE: The receiving variable name does not need to match the name as
+      # defined in the app / component config. This facilitates narrowly
+      # scoped or overlapping values.
+      HOST_URL: "${HOST_URL}"
+      ADMIN_USERNAME: "${ADMIN_USERNAME}"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD}"
+      CAMPERONI_URL: "${CAMPERONI_URL}"
+      SENTRY_DSN: "${SENTRY_DSN}"
+      SENTRY_ENV: "${SENTRY_ENV}"
+      DD_API_KEY: "${DD_API_KEY}"
+      DD_SITE: "${DD_SITE}"
+      LOGLEVEL: "${LOGLEVEL}"
+      MANDRILL_API_KEY: "${MANDRILL_API_KEY}"
+      EMAIL_RECIPIENTS: "${EMAIL_RECIPIENTS}"
+      EXECUTE_SAMPLE_ONLY: "${EXECUTE_SAMPLE_ONLY}"
+      GDRIVE_PARENT_FOLDER: "${GDRIVE_PARENT_FOLDER}"
+      GDRIVE_CREDS_CLIENT_EMAIL: "${GDRIVE_CREDS_CLIENT_EMAIL}"
+      GDRIVE_CREDS_CLIENT_ID: "${GDRIVE_CREDS_CLIENT_ID}"
+      GDRIVE_CREDS_CLIENT_X509_CERT_URL: "${GDRIVE_CREDS_CLIENT_X509_CERT_URL}"
+      GDRIVE_CREDS_PRIVATE_KEY: "${GDRIVE_CREDS_PRIVATE_KEY}"
+      GDRIVE_CREDS_PRIVATE_KEY_ID: "${GDRIVE_CREDS_PRIVATE_KEY_ID}"
+      GDRIVE_CREDS_PROJECT_ID: "${GDRIVE_CREDS_PROJECT_ID}"
     actions:
       - name: open
         runtime: 'python:3.11'
