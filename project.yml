@@ -33,6 +33,12 @@ packages:
           timeout: 300000
           memory: 1024
         # logs: <kilobytes>
+        triggers:
+        - name: "Daily 9 AM UTC Registration Status Open"
+          sourceType: scheduler
+          sourceDetails:
+            cron: "0 9 * * *"
+            # withBody:  {}
       - name: close
         runtime: 'python:3.11'
         web: false
@@ -40,3 +46,9 @@ packages:
           timeout: 300000
           memory: 1024
         # logs: <kilobytes>
+        triggers:
+        - name: "Daily 10 AM UTC Registration Status Close"
+          sourceType: scheduler
+          sourceDetails:
+            cron: "0 10 * * *"
+            # withBody:  {}
