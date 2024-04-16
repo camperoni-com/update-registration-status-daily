@@ -47,7 +47,7 @@ CAMPERONI_URL=os.environ["CAMPERONI_URL"]
 MANDRILL_API_KEY=os.getenv("MANDRILL_API_KEY")
 EMAIL_RECIPIENTS=os.getenv("EMAIL_RECIPIENTS")
 
-EXECUTE_SAMPLE_ONLY=os.getenv("EXECUTE_SAMPLE_ONLY", True)
+EXECUTE_SAMPLE_ONLY = False if os.getenv("EXECUTE_SAMPLE_ONLY", True) == "False" else True
 
 LOGLEVEL = os.environ.get('LOGLEVEL', 'WARNING').upper()
 
