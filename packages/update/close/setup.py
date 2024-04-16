@@ -24,7 +24,8 @@ SENTRY_DSN=os.getenv("SENTRY_DSN")
 SENTRY_ENV=os.getenv("SENTRY_ENV", "unknown")
 
 # Only set up sentry if a DSN is provided. We can work without it as well
-if SENTRY_DSN is not None:
+if SENTRY_DSN is not None and SENTRY_DSN != "" and SENTRY_DSN.upper() != "FALSE" \
+    and SENTRY_ENV is not None and SENTRY_ENV != "" and SENTRY_ENV.upper() != "FALSE":
     sentry_sdk.init(
         dsn=SENTRY_DSN,
         # Set traces_sample_rate to 1.0 to capture 100%
