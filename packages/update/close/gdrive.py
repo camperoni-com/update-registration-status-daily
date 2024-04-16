@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 def get_drive_service(credentials_json):
     scopes = ['https://www.googleapis.com/auth/drive']
 
-    service_account_info = json.loads(credentials_json)
+    service_account_info = credentials_json
     credentials = Credentials.from_service_account_info(service_account_info, scopes=scopes)
 
     drive_service = build('drive', 'v3', credentials=credentials, cache_discovery=False)
