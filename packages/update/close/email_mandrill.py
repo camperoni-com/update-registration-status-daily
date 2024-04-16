@@ -4,12 +4,12 @@ from base64 import b64encode
 
 logger = logging.getLogger(__name__)
 
-if (MANDRILL_API_KEY is not None) and (EMAIL_RECIPIENTS is not None):
+if email_isenabled():
       import mailchimp_transactional as MailchimpTransactional
       from mailchimp_transactional.api_client import ApiClientError
 
 def email_update(html, camps_to_close_table, camps_closed_table, camps_not_closed_table):
-      if (MANDRILL_API_KEY is not None) and (EMAIL_RECIPIENTS is not None):
+      if email_isenabled():
             logger.info("Emailing updates...")
             send_email_mandrill(html, camps_to_close_table, camps_closed_table, camps_not_closed_table)
             logger.info("Done")
