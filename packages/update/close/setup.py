@@ -65,7 +65,10 @@ LOGLEVEL = os.environ.get('LOGLEVEL', 'WARNING').upper()
 DD_API_KEY = os.getenv("DD_API_KEY")
 DD_SITE = os.getenv("DD_SITE")
 
-if (DD_API_KEY is not None) and (DD_SITE is not None):
+if (DD_API_KEY is not None) and (DD_SITE is not None) \
+    and (DD_API_KEY != "") and (DD_SITE != "") \
+    and (DD_API_KEY.upper() != "FALSE") and (DD_SITE.upper() != "FALSE"):
+
     datadog_custom_handler = DatadogCustomLogHandler(level=LOGLEVEL, service="update-registration-status-daily--close") # Set the datadog log level to INFO
     logging.basicConfig(level=LOGLEVEL, handlers=[logging.StreamHandler(), datadog_custom_handler])
 else:
