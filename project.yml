@@ -29,6 +29,14 @@ packages:
       - name: open
         runtime: 'python:3.11'
         web: false
+        limits:
+          timeout: 300000
+          memory: 1024
+        # logs: <kilobytes>
       - name: close
         runtime: 'python:3.11'
         web: false
+        limits:
+          timeout: 300000
+          memory: 1024
+        # logs: <kilobytes>
