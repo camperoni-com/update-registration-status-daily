@@ -64,9 +64,45 @@ else:
 # logger = logging.getLogger(__name__)
 
 GDRIVE_PARENT_FOLDER = os.getenv("GDRIVE_PARENT_FOLDER")
-GDRIVE_CREDENTIALS = os.environ.get("GDRIVE_CREDENTIALS")
-if GDRIVE_CREDENTIALS is not None:
-    GDRIVE_CREDENTIALS = GDRIVE_CREDENTIALS.replace("___NEWLINE___", '\\n')
+GDRIVE_CREDS_CLIENT_EMAIL = os.getenv("GDRIVE_CREDS_CLIENT_EMAIL")
+GDRIVE_CREDS_CLIENT_ID = os.getenv("GDRIVE_CREDS_CLIENT_ID")
+GDRIVE_CREDS_CLIENT_X509_CERT_URL = os.getenv("GDRIVE_CREDS_CLIENT_X509_CERT_URL")
+GDRIVE_CREDS_PRIVATE_KEY = os.getenv("GDRIVE_CREDS_PRIVATE_KEY")
+GDRIVE_CREDS_PRIVATE_KEY_ID = os.getenv("GDRIVE_CREDS_PRIVATE_KEY_ID")
+GDRIVE_CREDS_PROJECT_ID = os.getenv("GDRIVE_CREDS_PROJECT_ID")
+
+if GDRIVE_CREDS_PRIVATE_KEY is not None:
+    GDRIVE_CREDS_PRIVATE_KEY = GDRIVE_CREDS_PRIVATE_KEY.replace("___NEWLINE___", '\\n')
+
+def gdrive_isenabled():
+    if GDRIVE_PARENT_FOLDER is not None \
+    and GDRIVE_PARENT_FOLDER != "" \
+    and GDRIVE_PARENT_FOLDER.upper() != "FALSE" \
+    and GDRIVE_CREDS_CLIENT_EMAIL is not None \
+    and GDRIVE_CREDS_CLIENT_ID is not None \
+    and GDRIVE_CREDS_CLIENT_X509_CERT_URL is not None \
+    and GDRIVE_CREDS_PRIVATE_KEY is not None \
+    and GDRIVE_CREDS_PRIVATE_KEY_ID is not None \
+    and GDRIVE_CREDS_PROJECT_ID is not None:
+        return True
+
+    return False
+
+gdrive_credentials_json = None
+if gdrive_isenabled():
+    gdrive_credentials_json = {
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "client_email": GDRIVE_CREDS_CLIENT_EMAIL,
+        "client_id": GDRIVE_CREDS_CLIENT_ID,
+        "client_x509_cert_url": GDRIVE_CREDS_CLIENT_X509_CERT_URL,
+        "private_key": GDRIVE_CREDS_PRIVATE_KEY,
+        "private_key_id": GDRIVE_CREDS_PRIVATE_KEY_ID,
+        "project_id": GDRIVE_CREDS_PROJECT_ID,
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "type": "service_account",
+        "universe_domain": "googleapis.com"
+    }
 
 # HTTP Related Code
 base_url = HOST_URL

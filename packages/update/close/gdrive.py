@@ -1,6 +1,6 @@
 from setup import *
 
-if (GDRIVE_PARENT_FOLDER is not None) and (GDRIVE_CREDENTIALS is not None):
+if gdrive_isenabled():
     from io import BytesIO
 
     from google.oauth2.service_account import Credentials
@@ -76,12 +76,12 @@ def upload_file_to_drive(drive_service, data, file_prefix, folder_id):
 
 
 def gdrive_upload(email_html, camps_to_close_table, camps_closed_table, camps_not_closed_table):
-    if (GDRIVE_PARENT_FOLDER is not None) and (GDRIVE_CREDENTIALS is not None):
+    if gdrive_isenabled():
         logger.info("Uploading to Google Drive...")
 
         # Update the google drive and upload the list of camps that were closed
         try:
-            drive_service = get_drive_service(GDRIVE_CREDENTIALS)
+            drive_service = get_drive_service(gdrive_credentials_json)
 
             folder_id = get_or_create_folder(GDRIVE_PARENT_FOLDER, drive_service)
             logger.debug(f"Folder ID: {folder_id}")
