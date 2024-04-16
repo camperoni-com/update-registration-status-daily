@@ -4,17 +4,17 @@
     "namespace": "fn-7ec46b16-4993-423c-bfb2-3282f40d195b",
     "packageVersions": {
       "update": {
-        "version": "0.0.96",
+        "version": "0.0.100",
         "digest": "2e5211991b79fd0821520eaab54987ceee711e7c7df3cdcf14bed74590ae32b5"
       }
     },
     "actionVersions": {
       "update/close": {
-        "version": "0.0.112",
-        "digest": "1bcd152b527c329ac10648fa145982908c3662512bb74fc6d6521418dabf4cd6"
+        "version": "0.0.116",
+        "digest": "a977bf1b6e16e20c8f9ea8b135a6c972c525342cef3ca345256dc719979508d3"
       },
       "update/open": {
-        "version": "0.0.79",
+        "version": "0.0.83",
         "digest": "191326bb852193e05464255dd5d5b349bf80456ed27741588f9cebee97bf0fdb"
       }
     }
